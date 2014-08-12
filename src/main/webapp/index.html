@@ -3,39 +3,15 @@
     <head>
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script type="text/javascript" src="js/prototype.js"></script>
-        <script type="text/javascript" language="javascript">
-            /**
- * 
- */
-function send() {
- new Ajax.Request('/minrec/login', {
-     method:'get',
-     parameters: $('loginForm').serialize(true),
-     onSuccess: function(transport,json) {
-         var qq = transport.responseText;
-         alert(json? Object.inspect(json):"noJSON");
-    }
- });
-    
-}
-        </script>
+        <style type="text/css">
+            a {margin:20px}
+        </style>
     </head>
     <body>
-    <center>
+    <div style="position:absolute; top:50%;margin:0% 35%">
         <span id="info"></span>
-        <form id="loginForm" action="/login" method="post">
-            <input type="text" id="login"/>
-            <input type="password" id="password"/>
-            <input type="button" onclick="send()" value="Send"/>
-            
-<!--            <label id="logLab" for="login">Login:</label>
-            <input type="text" id="login"/><br>
-             <label id="passLab" for="pass">Login:</label>
-            <input type="text" id="pass"/><br>
-            <input type="submit" name="minister" value="Вход для министра"/>
-            <input type="submit" name="secretary" value="Вход для секретаря"/>-->
-        </form>
-    </center>
+        <a href="pages/minhome.html">Войти как министр</a>
+        <a href="pages/sechome.jsp">Войти как секретарь</a>
+    </div>
     </body>
 </html>
