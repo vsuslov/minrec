@@ -1,0 +1,6 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<table id="listApplicants" border="3">
+    <tr id="header"><th>Отметить</th><th>Время</th><th>ФИО</th><th>Комментарий</th><th>Статус</th></tr>
+</table>
+<br>

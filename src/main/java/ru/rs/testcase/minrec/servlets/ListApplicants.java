@@ -34,37 +34,40 @@ public class ListApplicants extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-      JSONObject result=new JSONObject();
-        if(emf!=null) {
-        EntityManager em=null;
-        try{
-            em=emf.createEntityManager();
-            
-        List<Applicant> applicants= (List<Applicant>) em.createQuery("SELECT a FROM Applicant a").getResultList();
+        JSONObject result = new JSONObject();
+        if (emf != null) {
+            EntityManager em = null;
+            try {
+                em = emf.createEntityManager();
 
-        if(!applicants.isEmpty()){
+                List<Applicant> applicants = (List<Applicant>) em.createQuery("SELECT a FROM Applicant a").getResultList();
 
-           JSONArray array=new JSONArray();
-           for(Applicant a:applicants) {
-               JSONObject person=new JSONObject();
-               person.put("name",a.getName());
-               person.put("comment",a.getComment());
-               person.put("time", a.getTime());
-               person.put("status", a.getStatus());
-               array.put(person);
-           }
-           result.put("array",array);
-       }
-        resp.getWriter().println(result);
-        }catch (JSONException ex) {
-              Logger.getLogger(ListApplicants.class.getName()).log(Level.SEVERE, null, ex);
-          }
-        finally {
-            if(em!=null) {
-                em.close();
-            }}
+                if (!applicants.isEmpty()) {
+
+                    JSONArray array = new JSONArray();
+                    for (Applicant a : applicants) {
+                        JSONObject person = new JSONObject();
+                        person.put("name", a.getName());
+                        person.put("comment", a.getComment());
+                        person.put("time", a.getTime());
+                        person.put("status", a.getStatus());
+                        array.put(person);
+                    }
+                    System.out.println(array);
+
+                    result.put("array", array);
+                }
+                resp.setContentType("text/html");
+                resp.setCharacterEncoding("utf8");
+                resp.getWriter().println(result);
+            } catch (JSONException ex) {
+                Logger.getLogger(ListApplicants.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (em != null) {
+                    em.close();
+                }
+            }
         }
-   
-}}
-    
 
+    }
+}
