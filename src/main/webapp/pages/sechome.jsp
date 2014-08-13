@@ -11,9 +11,10 @@
            
     </head>
     <body onload="app.loadTable()">
-        <%@include file="../components/listApplicants.jspf" %>
-        <br>
         
+        <%@include file="../components/listApplicants.jspf" %>
+        <input type="button" onclick="app.setStatus('Исполнено')" value="Исполнено"/>
+        <br><br>
         <form id="addApp" action="/minrec/add" method="post">
             <label for="name">ФИО:</label>
             <input type="text" name="name" id="name"/><br>
