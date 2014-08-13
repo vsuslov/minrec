@@ -28,28 +28,24 @@ public class Applicant implements Serializable {
 
     @Column(name = "Name", nullable = false)
     private String name;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "time")
     private Date time;
-    
+
     @Column(name = "Comment")
     private String comment;
-    
+
     @Column
     private String status;
 
-  
-    
-    public Applicant(String name,String comment) {
-        this.name=name;
-        this.comment=comment;
+    public Applicant(String name, String comment) {
+        this.name = name;
+        this.comment = comment;
     }
 
     public Applicant() {
     }
-   
-    
 
     //////////////////////////////////////////
     public String getName() {
@@ -83,13 +79,13 @@ public class Applicant implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
-    
-      public String getStatus() {
+
+    public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
 }

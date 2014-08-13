@@ -33,6 +33,7 @@ initialize: function() {},
                 });
             },
             onComplete: function(response) {
+                app.setCleared();
                 setTimeout(function(){app.loadTable();}, 5000);
             }
     });
@@ -62,20 +63,25 @@ initialize: function() {},
     },
     clearTable:function() {
        var table = $('listApplicants');
-       this.selected=app.getSelected();
+        app.selectedApp=app.getSelected();
        while(table.rows.length>1) {
            table.deleteRow(1);
        }
        
+       
     },
     setStatus: function(stat) {
-        var array = app.getSelected();
-        alert(array.toJSON());
+        
+        var arr = app.getSelected();
+        var names = [];var j=0;
+        var table = $('listApplicants');
+        arr.each(function(e) {
+            names[j++]=table.rows.item(e).cells[2].innerHTML;
+        });
         new Ajax.Request('/minrec/register',{
         method:'post',
-        parameters:{array:array, status:stat}
-    }
-        );
+        parameters:{array:Object.toJSON(names), status:stat}
+    });
         $$('input[type=checkbox]').each(function(e){e.checked=false;});
     },
     
@@ -91,6 +97,14 @@ initialize: function() {},
             }
         });
     return result;
+    },
+    setCleared:function() {
+        var array = app.selectedApp;
+      array.each(function(e){
+         var table = $('listApplicants');
+         var box = table.rows.item(e).cells[0].childNodes[0];
+         box.checked=true;
+      });
     }
 };
 
